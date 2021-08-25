@@ -5,6 +5,9 @@ function App() {
     <div className="App">
       <form className="search-form">
         <Input />
+        <button className="search-button" type="submit">
+          Search
+        </button>
       </form>
     </div>
   );
