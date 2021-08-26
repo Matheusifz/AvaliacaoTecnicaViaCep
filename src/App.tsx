@@ -1,29 +1,29 @@
 import Input from "./components/input";
 import { useState } from "react";
-import { useEffect } from "react";
 
 function App() {
-  const [adress, setAdress] = useState({}); //Mostrar os dados
-  const [search, setSearch] = useState(""); // Procurar os dados
-  const [query, setQuery] = useState(""); // Informar os dados que eu quero pegar baseado na pesquisa feita
+  const [address, setAddress] = useState({});
+  const [query, setQuery] = useState("");
 
-  useEffect(() => {
-    getAdress();
-  }, [query]);
-
-  const getAdress = async () => {
-    const response = await fetch(`https://viacep.com.br/ws/01001000/json/`)
-      .then((response) => response.json())
-      .then((response) => console.log(response));
+  const onChange = (e: any) => {
+    setQuery(e.target.value);
   };
 
-
+  const getAddress = async (e: any) => {
+    e.preventDefault();
+    const response = await fetch(`https://viacep.com.br/ws/${query}/json/`)
+      .then((response) => {
+        return response.json();
+      })
+      .catch((err) => console.log(err));
+    setAddress(response);
+  };
 
   return (
     <div className="App">
       <form className="search-form">
-        <Input />
-        <button className="search-button" type="submit">
+        <Input query={query} onChange={onChange} />
+        <button onClick={getAddress} className="search-button">
           Search
         </button>
       </form>

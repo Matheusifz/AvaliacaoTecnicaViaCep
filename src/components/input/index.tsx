@@ -1,13 +1,10 @@
-import { useState } from "react";
+interface InputProps {
+  query: string;
+  onChange: (event: any) => void;
+}
 
-const Input: React.FC = () => {
-  const [query, setQuery] = useState("");
-  return (
-    <input
-      value={query}
-      onChange={(event) => setQuery(event.target.value)}
-    ></input>
-  );
+const Input: React.FC<InputProps> = ({ query, onChange }) => {
+  return <input value={query} onChange={onChange}></input>;
 };
 
 export default Input;
