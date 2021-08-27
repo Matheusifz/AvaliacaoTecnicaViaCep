@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { GoSearch } from "react-icons/go";
+import { Container } from "./style";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
 import Input from "../../components/Input";
@@ -39,7 +40,7 @@ const Home: React.FC = () => {
   };
 
   return (
-    <>
+    <Container>
       <Card width="680" height="43">
         <Input query={query} onChange={onChange} />
         <Button onClick={handleInputSubmit}>
@@ -55,7 +56,7 @@ const Home: React.FC = () => {
           <h3>CEP {address.cep}</h3>
         </Card>
       )}
-    </>
+    </Container>
   );
 };
 
