@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { GoSearch } from "react-icons/go";
-import { Container } from "./style";
+import { Container, Content } from "./style";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
 import Input from "../../components/Input";
@@ -44,16 +44,18 @@ const Home: React.FC = () => {
       <Card width="680" height="43">
         <Input query={query} onChange={onChange} />
         <Button onClick={handleInputSubmit}>
-          <GoSearch size={24} />
+          <GoSearch size={24} color="#F8F8F8" />
         </Button>
       </Card>
       {!!address && (
         <Card width="680" height="262">
-          <h3>Cidade de {address.localidade}</h3>
-          <h3> {address.logradouro}</h3>
-          <h3>Bairro {address.bairro}</h3>
-          <h3>Estado {address.uf}</h3>
-          <h3>CEP {address.cep}</h3>
+          <Content>
+            <h3>Cidade de {address.localidade}</h3>
+            <h3> {address.logradouro}</h3>
+            <h3>Bairro {address.bairro}</h3>
+            <h3>Estado {address.uf}</h3>
+            <h3>CEP {address.cep}</h3>
+          </Content>
         </Card>
       )}
     </Container>
