@@ -40,14 +40,14 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <Card>
+      <Card width="680" height="43">
         <Input query={query} onChange={onChange} />
         <Button onClick={handleInputSubmit}>
           <GoSearch size={24} />
         </Button>
       </Card>
       {!!address && (
-        <Card>
+        <Card width="680" height="262">
           <h3>Cidade de {address.localidade}</h3>
           <h3> {address.logradouro}</h3>
           <h3>Bairro {address.bairro}</h3>
