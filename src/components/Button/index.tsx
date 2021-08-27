@@ -1,4 +1,5 @@
 import React from "react";
+import { Button as StyledButton } from "./styles";
 
 interface ButtonProps {
   onClick: (e: any) => void;
@@ -6,7 +7,7 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ onClick, children }) => {
-  return <button onClick={onClick}>{children}</button>;
+  return <StyledButton onClick={onClick}>{children} </StyledButton>;
 };
 
 export default Button;
