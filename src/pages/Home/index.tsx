@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { GoSearch } from "react-icons/go";
+import Button from "../../components/Button";
+import Card from "../../components/Card";
 import Input from "../../components/Input";
 
 interface Address {
@@ -11,14 +14,13 @@ interface Address {
 
 const Home: React.FC = () => {
   const [address, setAddress] = useState<Address | null>();
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState("33855610");
 
   const onChange = (e: any) => {
     setQuery(e.target.value);
   };
 
-  const getAddress = async (e: any) => {
-    e.preventDefault();
+  const getAddress = async () => {
     const response = await fetch(`https://viacep.com.br/ws/${query}/json/`)
       .then((response) => {
         return response.json();
@@ -27,22 +29,31 @@ const Home: React.FC = () => {
     setAddress(response);
   };
 
+  useEffect(() => {
+    getAddress();
+  }, []);
+
+  const handleInputSubmit = (e: any) => {
+    e.preventDefault();
+    getAddress();
+  };
+
   return (
     <>
-      <form className="search-form">
+      <Card>
         <Input query={query} onChange={onChange} />
-        <button onClick={getAddress} className="search-button">
-          Search
-        </button>
-      </form>
+        <Button onClick={handleInputSubmit}>
+          <GoSearch size={24} />
+        </Button>
+      </Card>
       {!!address && (
-        <div className="card-text">
-          <h3 className="localidade">Cidade de {address.localidade}</h3>
-          <h3 className="logradouro"> {address.logradouro}</h3>
-          <h3 className="bairro">Bairro {address.bairro}</h3>
-          <h3 className="uf">Estado {address.uf}</h3>
-          <h3 className="cep">CEP {address.cep}</h3>
-        </div>
+        <Card>
+          <h3>Cidade de {address.localidade}</h3>
+          <h3> {address.logradouro}</h3>
+          <h3>Bairro {address.bairro}</h3>
+          <h3>Estado {address.uf}</h3>
+          <h3>CEP {address.cep}</h3>
+        </Card>
       )}
     </>
   );
