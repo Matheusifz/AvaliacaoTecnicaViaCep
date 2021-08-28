@@ -29,8 +29,6 @@ const Home: React.FC = () => {
   const getAddress = async () => {
     const address = await api.get(`/?cep=${query}`);
     if (!!address) {
-      console.log("address.data from backend");
-      console.log(address.data.address);
       setAddress(address.data.address);
     }
   };
@@ -42,14 +40,14 @@ const Home: React.FC = () => {
 
   return (
     <Container>
-      <Card width="680" height="43">
+      <Card maxWidth="980px" width="70%" height="43px">
         <Input query={query} onChange={onChange} />
         <Button onClick={handleInputSubmit}>
           <GoSearch size={24} color="#F8F8F8" />
         </Button>
       </Card>
       {!!address && (
-        <Card width="680" height="262">
+        <Card maxWidth="980px" width="70%" height="262px">
           <Content>
             <li>
               <FaRoad size={20} color="#F8F8F8" />

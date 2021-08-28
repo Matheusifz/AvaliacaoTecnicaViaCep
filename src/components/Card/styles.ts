@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 interface ContainerProps {
   width: string;
+  maxWidth: string;
   height: string;
 }
 
@@ -14,7 +15,8 @@ export const Container = styled.div<ContainerProps>`
   justify-content: center;
   align-items: center;
 
-  width: ${(props) => (props.width ? props.width + "px" : "120px")};
+  width: ${(props) => (props.width ? props.width : "120px")};
+  max-width: ${(props) => (props.maxWidth ? props.maxWidth : "780px")};
 
-  height: ${(props) => (props.height ? props.height + "px" : "300px")};
+  height: ${(props) => (props.height ? props.height : "300px")};
 `;
