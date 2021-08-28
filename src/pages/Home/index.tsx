@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
 import { GoSearch } from "react-icons/go";
+import { FaRoad, FaCity } from "react-icons/fa";
+import { BsFillHouseFill } from "react-icons/bs";
+import { BiMapPin } from "react-icons/bi";
+import { RiMapPinLine } from "react-icons/ri";
 import { Container, Content } from "./style";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
@@ -50,11 +54,32 @@ const Home: React.FC = () => {
       {!!address && (
         <Card width="680" height="262">
           <Content>
-            <h3>Cidade de {address.localidade}</h3>
-            <h3> {address.logradouro}</h3>
-            <h3>Bairro {address.bairro}</h3>
-            <h3>Estado {address.uf}</h3>
-            <h3>CEP {address.cep}</h3>
+            <li>
+              <FaRoad size={20} color="#F8F8F8" />
+              <span>Cidade de: {address.localidade}</span>
+            </li>
+            <li>
+              <FaCity size={20} color="#F8F8F8" />
+              <span>
+                Logradouro:
+                {address.logradouro}
+              </span>
+            </li>
+            <li>
+              <BsFillHouseFill size={20} color="#F8F8F8" />
+              <span>Bairro: {address.bairro}</span>
+            </li>
+            <li>
+              <BiMapPin size={20} color="#F8F8F8" /> 
+              <span>
+                Estado de:
+                {address.uf}
+              </span>
+            </li>
+            <li>
+              <RiMapPinLine size={20} color="#F8F8F8" />
+              <span>CEP: {address.cep}</span>
+            </li>
           </Content>
         </Card>
       )}

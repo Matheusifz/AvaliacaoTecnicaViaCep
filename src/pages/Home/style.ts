@@ -6,15 +6,28 @@ export const Container = styled.div`
   align-items: center;
   flex-direction: column;
 
- & > div {
+  & > div {
     margin-top: 80px;
   }
 `;
 
-export const Content = styled.div`
+export const Content = styled.ul`
   display: flex;
   align-items: left;
-  flex-direction: column; 
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
   height: 100%;
+
+  li {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    list-style-type: none;
+    padding: 12px;
+
+    span {
+      padding-left: 19px;
+    }
+  }
 `;
