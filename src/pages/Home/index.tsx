@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { GoSearch } from "react-icons/go";
 import { FaRoad, FaCity } from "react-icons/fa";
 import { BsFillHouseFill } from "react-icons/bs";
@@ -19,7 +19,7 @@ interface Address {
 
 const Home: React.FC = () => {
   const [address, setAddress] = useState<Address | null>();
-  const [query, setQuery] = useState("33855610");
+  const [query, setQuery] = useState("");
 
   const onChange = (e: any) => {
     setQuery(e.target.value);
@@ -33,10 +33,6 @@ const Home: React.FC = () => {
       .catch((err) => console.log(err));
     setAddress(response);
   };
-
-  useEffect(() => {
-    getAddress();
-  }, []);
 
   const handleInputSubmit = (e: any) => {
     e.preventDefault();
@@ -70,7 +66,7 @@ const Home: React.FC = () => {
               <span>Bairro: {address.bairro}</span>
             </li>
             <li>
-              <BiMapPin size={20} color="#F8F8F8" /> 
+              <BiMapPin size={20} color="#F8F8F8" />
               <span>
                 Estado de:
                 {address.uf}
