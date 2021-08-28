@@ -40,14 +40,14 @@ const Home: React.FC = () => {
 
   return (
     <Container>
-      <Card maxWidth="980px" width="70%" height="43px">
-        <Input query={query} onChange={onChange} />
+      <Card maxWidth="560px" width="70%" height="43px">
+        <Input query={query} onChange={onChange} placeholder="Type your CEP here..."/>
         <Button onClick={handleInputSubmit}>
           <GoSearch size={24} color="#F8F8F8" />
         </Button>
       </Card>
       {!!address && (
-        <Card maxWidth="980px" width="70%" height="262px">
+        <Card maxWidth="560px" width="70%" height="262px">
           <Content>
             <li>
               <FaRoad size={20} color="#F8F8F8" />

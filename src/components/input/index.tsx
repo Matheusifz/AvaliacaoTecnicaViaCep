@@ -1,12 +1,20 @@
-import { Input as StyledInput } from "./styles";
+  
+import React, {
+  InputHTMLAttributes, 
+} from "react";
+import { Container } from "./styles";
 
-interface InputProps {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
   query: string;
-  onChange: (event: any) => void;
+  onChange: (event: any) => void; 
 }
 
-const Input: React.FC<InputProps> = ({ query, onChange }) => {
-  return <StyledInput  value={query} onChange={onChange}></StyledInput>;
+const Input: React.FC<InputProps> = ({ query, onChange, ...rest }) => {
+  return (
+    <Container>
+      <input  value={query} onChange={onChange}  {...rest}  />
+    </Container>
+  );
 };
 
 export default Input;
