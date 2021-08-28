@@ -8,12 +8,13 @@ import { Container, Content } from "./style";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
 import Input from "../../components/Input";
+import api from "../../services/api";
 
 interface Address {
-  localidade: string;
-  bairro: string;
-  uf: string;
-  logradouro: string;
+  city: string;
+  neighborhood: string;
+  state: string;
+  street: string;
   cep: string;
 }
 
@@ -26,12 +27,12 @@ const Home: React.FC = () => {
   };
 
   const getAddress = async () => {
-    const response = await fetch(`https://viacep.com.br/ws/${query}/json/`)
-      .then((response) => {
-        return response.json();
-      })
-      .catch((err) => console.log(err));
-    setAddress(response);
+    const address = await api.get(`/?cep=${query}`);
+    if (!!address) {
+      console.log("address.data from backend");
+      console.log(address.data.address);
+      setAddress(address.data.address);
+    }
   };
 
   const handleInputSubmit = (e: any) => {
@@ -52,24 +53,24 @@ const Home: React.FC = () => {
           <Content>
             <li>
               <FaRoad size={20} color="#F8F8F8" />
-              <span>Cidade de: {address.localidade}</span>
+              <span>Cidade de: {address.city}</span>
             </li>
             <li>
               <FaCity size={20} color="#F8F8F8" />
               <span>
                 Logradouro:
-                {address.logradouro}
+                {address.street}
               </span>
             </li>
             <li>
               <BsFillHouseFill size={20} color="#F8F8F8" />
-              <span>Bairro: {address.bairro}</span>
+              <span>Bairro: {address.neighborhood}</span>
             </li>
             <li>
               <BiMapPin size={20} color="#F8F8F8" />
               <span>
                 Estado de:
-                {address.uf}
+                {address.state}
               </span>
             </li>
             <li>
